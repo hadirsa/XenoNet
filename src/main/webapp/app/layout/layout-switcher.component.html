@@ -1,0 +1,15 @@
+<div class="demo" [class.activate]="isActivated"><span id="demo-setting" (click)="onToggle()"><i
+  class="fa fa-gear fa-4x fa-spin txt-color-blueDark"></i></span>
+
+  <form>
+    <legend class="no-padding margin-bottom-10">XenoNet Skins</legend>
+
+    <section id="smart-styles">
+          <a *ngFor="let skin of store.skins"
+             (click)="onSmartSkin(skin)"
+             [class]="skin.skinBtnClass"
+             [ngStyle]="skin.style">
+             <i *ngIf="skin.name == store.smartSkin" class="fa fa-check fa-fw"></i> {{skin.label}} <sup *ngIf="skin.beta">beta</sup></a>
+        </section>
+  </form>
+</div>
