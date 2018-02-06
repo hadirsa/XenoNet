@@ -12,6 +12,8 @@ import { EventManager, PaginationUtil, ParseLinks } from "ng-jhipster";
 import { ServerService } from "../servers/server.service";
 import { ResponseWrapper } from "../shared/model/response-wrapper.model";
 
+import { DiagramOverView } from "./diagram-overView/diagram-overView.component";
+
 @Component({
     selector: "app-networkDiagram",
     templateUrl: "./networkDiagram.component.html"
@@ -24,6 +26,7 @@ export class NetworkDiagramComponent implements OnInit, AfterViewInit {
     };
 
     @ViewChild("tabDiagramDrawer") tabDiagramDrawerTemplate;
+    @ViewChild("diagramOverView") networkDiagramOverViewRef: DiagramOverView;
     @ViewChild(TabsComponent) tabsComponent;
 
     public servers: Server[];
@@ -96,11 +99,15 @@ export class NetworkDiagramComponent implements OnInit, AfterViewInit {
     createDiagramDrawer(servers: Server[]) {
         servers.forEach(server => {
             this.tabsComponent.openTab(
-              server.name,
+                server.name,
                 this.tabDiagramDrawerTemplate,
                 server,
                 false
             );
         });
+    }
+
+    test(){
+        this.networkDiagramOverViewRef.save();
     }
 }

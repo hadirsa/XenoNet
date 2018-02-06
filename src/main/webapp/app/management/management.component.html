@@ -52,9 +52,9 @@
                         <td>{{user.login}}</td>
                         <td>{{user.email}}</td>
                         <td>
-                            <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
+                            <button style="height: 30px;" class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
                             >Deactivated</button>
-                    <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated"
+                    <button style="height: 30px;" class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated"
                             [disabled]="currentAccount.login === user.login" >Activated</button>
                         </td>
 

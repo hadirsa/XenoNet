@@ -54,7 +54,7 @@
                                 Deploy
                             </button>
 
-                            <button type="button" class=" btn  btn-success">
+                            <button type="button" class=" btn  btn-success" (click)="test()">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -118,7 +118,7 @@
                 <tabs-diagram>
                     <tab-diagram [tabTitle]="'OverView'">
                         <ng-container *ngIf="servers">
-                            <diagram-overView [servers]="servers"></diagram-overView>
+                            <diagram-overView [servers]="servers" #diagramOverView></diagram-overView>
                         </ng-container>
                     </tab-diagram>
                 </tabs-diagram>

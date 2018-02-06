@@ -5,6 +5,7 @@
 */
 import { BaseEntity } from "../shared/baseEntity/baseEntity.model";
 import { NetworkCard } from "./networkCard.model";
+import { OveralDiagramConnection } from "./overalDiagramConnection.model";
 
 export class Server extends BaseEntity<number> {
     constructor(
@@ -19,7 +20,8 @@ export class Server extends BaseEntity<number> {
         public hhd?: string,
         public dockerVersion?: string,
         public ovsVersion?: string,
-        public kvmVersion?: string
+        public kvmVersion?: string,
+        public overalDiagramConnections?: OveralDiagramConnection[]
     ) {
         super();
         this.name = "";
@@ -35,5 +37,6 @@ export class Server extends BaseEntity<number> {
         this.dockerVersion = "";
         this.ovsVersion = "";
         this.kvmVersion = "";
+        this.overalDiagramConnections = [];
     }
 }

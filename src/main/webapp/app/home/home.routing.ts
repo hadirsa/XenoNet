@@ -17,7 +17,7 @@ const routes: Routes = [
         resolve: {
             pagingParams: ResolvePagingParams
         },
-        canActivate: [UserCanActivate]
+        // canActivate: [UserCanActivate]
     }
 ];
 

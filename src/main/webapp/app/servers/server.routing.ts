@@ -19,7 +19,7 @@ const routes: Routes = [
             pagingParams: ResolvePagingParams
         },
         data: {},
-        canActivate: [UserCanActivate]
+        // canActivate: [UserCanActivate]
     },
     {
         path: "servers/edit/:id",

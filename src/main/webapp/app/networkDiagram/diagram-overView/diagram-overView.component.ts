@@ -7,6 +7,7 @@ import {
     Input
 } from "@angular/core";
 import { Server } from "../../servers/server.model";
+import { JsonToNetworkDiagramParser } from "../netWorkDiagramParser.util";
 import * as go from "gojs";
 
 const $$ = go.GraphObject.make;
@@ -510,6 +511,8 @@ export class DiagramOverView extends go.Link implements OnInit {
     }
 
     save() {
+        console.log(this.myDiagram.model.toJson());
+        console.log(new JsonToNetworkDiagramParser().parsJson(this.servers, this.myDiagram.model.toJson()))
         // document.getElementById("mySavedModel").value = this.myDiagram.model.toJson();
         // this.myDiagram.isModified = false;
     }
@@ -592,13 +595,13 @@ export class DiagramOverView extends go.Link implements OnInit {
                 bottomArray.push({
                     name: networkCard.name,
                     portColor: "#316571",
-                    portId: "networkCard#" + networkCard.id
+                    portId: networkCard.name
                 });
             });
             nodeDataArray.push({
                 source: this.samplePhysicalServer,
                 describtion: primeIp,
-                key: server.id,
+                key: server.name,
                 name: server.name,
                 loc: "400 50",
                 bottomArray: bottomArray
