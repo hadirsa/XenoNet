@@ -211,20 +211,20 @@ export class DiagramOverView extends go.Link implements OnInit {
                             strokeWidth: 0,
                             angle: "90",
                             fill: "#2a1b51",
-                            margin: new go.Margin(0, 15),
-                            desiredSize: new go.Size(40, 15)
+                            margin: new go.Margin(0, 30),
+                            desiredSize: new go.Size(80, 15)
                         }),
                         $$(
                             go.TextBlock,
                             {
                                 margin: 1,
                                 verticalAlignment: go.Spot.Top,
-                                font: "14px  Segoe UI,sans-serif",
+                                font: "10px  Segoe UI,sans-serif",
                                 stroke: "black",
                                 angle: "270",
                                 textAlign: "center",
-                                width: 40,
-                                height: 40
+                                width: 80,
+                                height: 50
                                 // editable: true
                             },
                             new go.Binding("text", "name").makeTwoWay()
@@ -593,7 +593,7 @@ export class DiagramOverView extends go.Link implements OnInit {
                     primeIp = networkCard.ipAddress;
                 }
                 bottomArray.push({
-                    name: networkCard.name,
+                    name: networkCard.name + "\n" + networkCard.ipAddress,
                     portColor: "#316571",
                     portId: networkCard.name
                 });

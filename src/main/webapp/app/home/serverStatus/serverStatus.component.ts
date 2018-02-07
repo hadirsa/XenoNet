@@ -20,7 +20,7 @@ import { Server } from "../../servers/server.model";
     selector: "xnet-serverStatus",
     template: `
         <div style="max-width: 39% !important; float: left; position: relative; margin-left: 5px ;" sa-widget [colorbutton]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false" [fullscreenbutton]="false" color="blueDark">
-      <header>
+      <header style="background-color: #16A085 !important;">
         <h2><strong>{{server.name}}</strong></h2>
       </header>
       <!-- widget div-->
