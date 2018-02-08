@@ -12,6 +12,7 @@ export class NavigationMenuItem {
                 public isBookmark?: boolean,
                 public isOpen?: boolean,
                 public isShowing?: boolean,
+                public childs?: NavigationMenuItem[]
             ){
         this.id = 0;
         this.topic = '';
@@ -21,6 +22,7 @@ export class NavigationMenuItem {
         this.isBookmark = false;
         this.isOpen = false;
         this.isShowing = false;
+        this.childs = [];
     }
 }
 

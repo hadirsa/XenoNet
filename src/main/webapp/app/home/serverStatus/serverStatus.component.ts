@@ -67,7 +67,7 @@ import { Server } from "../../servers/server.model";
            <fieldset>
             <section>
               <legend>Server Status</legend>
-                  <div class="btn btn-info btn-xs"  style="cursor: pointer; margin-top: -45px;float: right;" (click)="refresh()">
+                  <div class="btn btn-info btn-xs"  style="cursor: pointer; margin-top: -45px;float: right; background-color: #16a085;border-color: #16a085;" (click)="refresh()">
                     <i class="button-icon fa fa-refresh"></i>
                   </div>
                 <div class="table-responsive dataTables_wrapper form-inline dt-bootstrap no-footer">

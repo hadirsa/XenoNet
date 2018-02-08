@@ -206,7 +206,7 @@ export class LayoutService {
         let $body = $("body");
         $body.removeClass(state.skins.map(it => it.name).join(" "));
         $body.addClass(state.skin.name);
-        $("#logo img").attr("src", state.skin.logo);
+        // $("#logo img").attr("src", state.skin.logo);
 
         $body.toggleClass("fixed-header", state.fixedHeader);
         $body.toggleClass("fixed-navigation", state.fixedNavigation);

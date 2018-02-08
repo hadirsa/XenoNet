@@ -6,7 +6,8 @@ declare var $:any;
 
 @Component({
   selector: 'sa-minify-menu',
-  template: `<span class="minifyme" (click)="toggle()">
+  template: `<span style="background-color: #16A085 !important;
+  color: white !important;" class="minifyme" (click)="toggle()">
     <i class="fa fa-arrow-circle-left hit"></i>
 </span>`,
 })
