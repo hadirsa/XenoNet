@@ -101,7 +101,7 @@ module.exports = function (options) {
             new StringReplacePlugin(),
             new WebpackNotifierPlugin({
                 title: 'JHipster',
-                contentImage: path.join(__dirname, 'logo-jhipster.png')
+                contentImage: path.join(__dirname, 'logoTabIcon.png')
             })
         ]
     };
