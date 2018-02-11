@@ -20,7 +20,7 @@ import { DynamicTabsDirective } from "./dynamic-tabs.directive";
   selector: "tabs-diagram",
   template: `
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" style="border: none !important;">
       <li *ngFor="let tab of staticTabs" [class.active]="tab.active">
           <a (click)="selectTab(tab)" >
               <i class="fa fa-lg fa-arrow-circle-o-down"></i>

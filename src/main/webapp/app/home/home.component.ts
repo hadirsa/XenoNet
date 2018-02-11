@@ -27,6 +27,20 @@ import { ResponseWrapper } from "../shared/model/response-wrapper.model";
     styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
     // @ViewChild("xnetServerStatus") xnetServerStatusTemplate;
     @ViewChild('xnetServerStatus', {read: ViewContainerRef}) xnetServerStatusTemplate :ViewContainerRef;
     public servers: Server[];

@@ -10,15 +10,14 @@ import * as go from "gojs";
 
 const $$ = go.GraphObject.make;
 @Component({
-    selector: "accessory-server",
-    templateUrl: "./accessoryServer.component.html"
+    selector: "accessory-controller",
+    templateUrl: "./accessoryController.component.html"
 })
-export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
-    @ViewChild("plateServerAccessory") plateServerAccessory: ElementRef;
+export class AccessoryController extends go.Link implements OnInit, AfterViewInit {
+    @ViewChild("plateControllerAccessory") plateControllerAccessory: ElementRef;
 
-    public sampleServer = require("../../../content/img/XenoNet/sampleServer.png");
+    public sampleOdl = require("../../../content/img/XenoNet/sampleOdl.png");
 
-    public sampleHost = require("../../../content/img/XenoNet/sampleHost.png");
 
     public __this = this;
 
@@ -30,12 +29,12 @@ export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
 
     ngOnInit() {
         ///////////////////////////////////////////////////////
-        var plateServerAccessory = $$(
+        var plateControllerAccessory = $$(
             go.Palette,
-            this.plateServerAccessory.nativeElement.id
+            this.plateControllerAccessory.nativeElement.id
         );
 
-        plateServerAccessory.nodeTemplate = $$(
+        plateControllerAccessory.nodeTemplate = $$(
             go.Node,
             "Horizontal",
 
@@ -53,7 +52,7 @@ export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
                 $$(go.Shape, "Rectangle", {
                     fill: "#ffffff",
                     strokeWidth: 1,
-                    minSize: new go.Size(60, 75)
+                    minSize: new go.Size(65, 75)
                 }),
 
                 $$(
@@ -61,7 +60,7 @@ export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
 
                     {
                         // margin: 20,
-                        width: 58,
+                        width: 60,
                         height: 70
                     },
                     new go.Binding("source")
@@ -74,7 +73,7 @@ export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
                         font: "14px  Segoe UI,sans-serif",
                         stroke: "black",
                         textAlign: "center",
-                        width: 60,
+                        width: 65,
                         height: 110,
                         editable: true
                     },
@@ -88,7 +87,7 @@ export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
                         font: "14px  Segoe UI,sans-serif",
                         stroke: "black",
                         textAlign: "center",
-                        width: 60,
+                        width: 65,
                         height: 110,
                         editable: true
                     },
@@ -97,12 +96,12 @@ export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
             ) // end Auto Panel body
         );
 
-        plateServerAccessory.model.nodeDataArray = [
+        plateControllerAccessory.model.nodeDataArray = [
             {
-                source: this.sampleServer,
+                source: this.sampleOdl,
                 key: 0,
-                name: "Server",
-                describtion: "Tomcat",
+                name: "Controller",
+                describtion: "ODL",
                 loc: "0 0",
                 ipAddress: "",
                 cpu: "0",
@@ -113,21 +112,6 @@ export class AccessoryServer extends go.Link implements OnInit, AfterViewInit {
                 bottomArray: [{ portColor: "#316571", portId: "bottom0" }],
                 rightArray: []
             },
-            {
-                source: this.sampleHost,
-                key: 1,
-                name: "Host",
-                describtion: "User",
-                loc: "0 0",
-                ipAddress: "",
-                cpu: "0",
-                ram: "0",
-                isDedicatedRes: "0",
-                leftArray: [],
-                topArray: [],
-                bottomArray: [{ portColor: "#316571", portId: "bottom0" }],
-                rightArray: []
-            }
         ];
 
         ////////////////////////////////////////////////////////

@@ -103,12 +103,12 @@ export class ServerPopupOpennerComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe(params => {
             if (params["id"]) {
                 this.modalRef = this.serverPopupService.open(
-                    ServerPopupComponent,
+                    ServerPopupComponent as Component,
                     params["id"]
                 );
             } else {
                 this.modalRef = this.serverPopupService.open(
-                    ServerPopupComponent
+                    ServerPopupComponent as Component
                 );
             }
         });

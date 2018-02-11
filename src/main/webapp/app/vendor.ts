@@ -29,6 +29,6 @@ window['moment'] = require('moment');
 
 require('smartadmin-plugins/notification/SmartNotification.min.js');
 
-require('script-loader!../content/jquery.easypiechart.js');
+// require('script-loader!../content/jquery.easypiechart.js');
 // require('jsplumb/dist/js/jsplumb.min.js');
 

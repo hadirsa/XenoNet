@@ -33,6 +33,8 @@ import { D3Module } from "./graphs/d3/d3.module";
 import { OnOffSwitchModule } from "./forms/input/on-off-switch/on-off-switch.module";
 // import { CustomReuseStrategy } from '../blocks/routeStrategy/customReuseStrategy';
 import { PasswordStrengthBarComponent } from "./passwordBar/password-strength-bar.component";
+import { KnobDirective } from "./forms/input/knob.directive";
+import { AsideModule } from "ng2-aside";
 
 @NgModule({
     imports: [
@@ -53,11 +55,12 @@ import { PasswordStrengthBarComponent } from "./passwordBar/password-strength-ba
         FlotChartModule,
         D3Module,
         OnOffSwitchModule,
-        InlineGraphsModule
+        InlineGraphsModule,
+        AsideModule
     ],
     declarations: [
         BigBreadcrumbsComponent,
-        PasswordStrengthBarComponent
+        PasswordStrengthBarComponent,
         // BaseInformationDirective,
         // CoolClockComponent,
         // PersianCalendarComponent,
@@ -68,6 +71,7 @@ import { PasswordStrengthBarComponent } from "./passwordBar/password-strength-ba
         // IframeComponent,
         // KeysPipe,
         // TestiComponent,
+        KnobDirective
     ],
     providers: [
         customHttpProvider()
@@ -105,7 +109,9 @@ import { PasswordStrengthBarComponent } from "./passwordBar/password-strength-ba
         D3Module,
         OnOffSwitchModule,
         InlineGraphsModule,
-        PasswordStrengthBarComponent
+        PasswordStrengthBarComponent,
+        KnobDirective,
+        AsideModule
     ]
 })
 export class SharedCommonDirectiveModule {}

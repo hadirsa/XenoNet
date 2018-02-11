@@ -15,6 +15,8 @@ import { TabDiagramDrawer } from "./tab-diagram-drawer/tab-diagram-drawer.compon
 import { DynamicTabsDirective } from "./tabs-diagram/dynamic-tabs.directive";
 import { TabComponent } from "./tabs-diagram/tab-diagram.component";
 import { TabsComponent } from "./tabs-diagram/tabs-diagram.component";
+import { NetworkDiagramComponentPropertiesComponent } from "./networkDiagramEntityProperties/networkDiagramComponentProperties.component";
+import { AccessoryController } from "./accessory-controller/accessoryController.component";
 
 @NgModule({
     imports: [
@@ -29,12 +31,14 @@ import { TabsComponent } from "./tabs-diagram/tabs-diagram.component";
         AccessorySwitch,
         AccessoryServer,
         AccessoryVnf,
+        AccessoryController,
         DiagramOverView,
         TabDiagramDrawer,
         DynamicTabsDirective,
         TabComponent,
-        TabsComponent
+        TabsComponent,
+        NetworkDiagramComponentPropertiesComponent
     ],
-    entryComponents: [ TabComponent ]
+    entryComponents: [TabComponent]
 })
 export class NetworkDiagramModule {}

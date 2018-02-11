@@ -7,24 +7,23 @@ import {
     Input
 } from "@angular/core";
 import { Server } from "../../servers/server.model";
-
+import { Inspector } from "../utils/DataInspector";
 import * as go from "gojs";
-
+import { NetworkDiagramComponentProperties } from "../networkDiagramEntityProperties/networkDiagramComponentProperties.model";
+import { ParallelRouteLink } from "../utils/ParallelRouteLink";
 const $$ = go.GraphObject.make;
 
 @Component({
     selector: "diagram-drawer",
-    template: `
-    <div *ngIf="server">
-        <div id="{{server.name}}" style="border: solid 1px black; width:100%; height:600px"></div>
-    </div>
-    `
+    templateUrl: "./tab-diagram-drawer.component.html",
+    styleUrls: ["../utils/DataInspector.css"]
 })
 export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
     @Input() server: Server;
-
+    public networkDiagramComponentProperties: NetworkDiagramComponentProperties = new NetworkDiagramComponentProperties();
     public myDiagram: any;
     public __this = this;
+    private selectedPart: any;
 
     constructor() {
         super();
@@ -47,6 +46,39 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
                 allowDrop: true
             }
         );
+
+        this.myDiagram.addDiagramListener("ObjectSingleClicked", e => {
+            var part = e.subject.part;
+            if (!(part instanceof go.Link)) {
+                console.log("my part IS");
+                console.log(part.data);
+                this.selectedPart = part;
+                if (part.data.name != "Switch") {
+                    this.networkDiagramComponentProperties.name =
+                        part.data.describtion;
+                    this.networkDiagramComponentProperties.ipAddress =
+                        part.data.ipAddress;
+                    this.networkDiagramComponentProperties.cpu = part.data.cpu;
+                    this.networkDiagramComponentProperties.ram = part.data.ram;
+                    this.networkDiagramComponentProperties.isDedicatedRes =
+                        part.data.isDedicatedRes == "1" ? true : false;
+                } else {
+                    this.networkDiagramComponentProperties.name = "";
+                    this.networkDiagramComponentProperties.ipAddress = "";
+                    this.networkDiagramComponentProperties.cpu = "0";
+                    this.networkDiagramComponentProperties.ram = "0";
+                    this.networkDiagramComponentProperties.isDedicatedRes = false;
+                }
+            }
+        });
+
+        this.myDiagram.addDiagramListener("BackgroundSingleClicked", e => {
+            this.networkDiagramComponentProperties.name = "";
+            this.networkDiagramComponentProperties.ipAddress = "";
+            this.networkDiagramComponentProperties.cpu = "0";
+            this.networkDiagramComponentProperties.ram = "0";
+            this.networkDiagramComponentProperties.isDedicatedRes = false;
+        });
 
         // when the document is modified, add a "*" to the title and enable the "Save" button
         // this.myDiagram.addDiagramListener("Modified", function (e) {
@@ -141,7 +173,7 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
                 $$(go.Shape, "Rectangle", {
                     fill: "#ffffff",
                     strokeWidth: 1,
-                    minSize: new go.Size(60, 75)
+                    minSize: new go.Size(65, 75)
                 }),
 
                 $$(
@@ -162,7 +194,7 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
                         font: "14px  Segoe UI,sans-serif",
                         stroke: "black",
                         textAlign: "center",
-                        width: 60,
+                        width: 65,
                         height: 110,
                         editable: true
                     },
@@ -176,7 +208,7 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
                         font: "14px  Segoe UI,sans-serif",
                         stroke: "black",
                         textAlign: "center",
-                        width: 60,
+                        width: 65,
                         height: 110,
                         editable: true
                     },
@@ -331,9 +363,12 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
         // an orthogonal link template, reshapable and relinkable
         this.myDiagram.linkTemplate = $$(
             go.Link, // defined below
+            // ParallelRouteLink,
             {
+                // curve: go.Link.Bezier,
                 routing: go.Link.AvoidsNodes,
                 corner: 4,
+                isTreeLink: true,
                 curve: go.Link.JumpGap,
                 reshapable: true,
                 resegmentable: true,
@@ -341,6 +376,7 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
                 relinkableTo: true
             },
             new go.Binding("points").makeTwoWay(),
+
             $$(go.Shape, { stroke: "#2F4F4F", strokeWidth: 2 })
         );
 
@@ -679,5 +715,46 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
                 // { from: 1, to: 2, fromPort: "right1", toPort: "left2" }
             ]
         });
+    }
+
+    applyChangeToComponent(
+        networkDiagramComponentProperties: NetworkDiagramComponentProperties
+    ) {
+        if (this.selectedPart) {
+            this.myDiagram.startTransaction("set all properties");
+            console.log("set all properties");
+            this.myDiagram.model.setDataProperty(
+                this.selectedPart.data,
+                "describtion",
+                networkDiagramComponentProperties.name
+            );
+            this.myDiagram.model.setDataProperty(
+                this.selectedPart.data,
+                "ipAddress",
+                networkDiagramComponentProperties.ipAddress
+            );
+            this.myDiagram.model.setDataProperty(
+                this.selectedPart.data,
+                "cpu",
+                Math.floor(
+                    Number(networkDiagramComponentProperties.cpu)
+                ).toString()
+            );
+            this.myDiagram.model.setDataProperty(
+                this.selectedPart.data,
+                "ram",
+                Math.floor(
+                    Number(networkDiagramComponentProperties.ram)
+                ).toString()
+            );
+            this.myDiagram.model.setDataProperty(
+                this.selectedPart.data,
+                "isDedicatedRes",
+                networkDiagramComponentProperties.isDedicatedRes == true
+                    ? "1"
+                    : "0"
+            );
+            this.myDiagram.commitTransaction("set all properties");
+        }
     }
 }
