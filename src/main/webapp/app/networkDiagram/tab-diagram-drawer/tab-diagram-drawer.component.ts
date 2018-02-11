@@ -757,4 +757,17 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
             this.myDiagram.commitTransaction("set all properties");
         }
     }
+
+    zoomIn(){
+        this.myDiagram.commandHandler.increaseZoom() 
+    }
+
+
+    zoomOut(){
+        this.myDiagram.commandHandler.decreaseZoom() 
+    }
+
+    fitToView(){
+        this.myDiagram.zoomToRect(this.myDiagram.documentBounds)
+    }
 }
