@@ -770,4 +770,12 @@ export class TabDiagramDrawer extends go.Link implements OnInit, AfterViewInit {
     fitToView(){
         this.myDiagram.zoomToRect(this.myDiagram.documentBounds)
     }
+
+    undo(){
+        this.myDiagram.commandHandler.undo() 
+    }
+
+    redo(){
+        this.myDiagram.commandHandler.redo() 
+    }
 }
