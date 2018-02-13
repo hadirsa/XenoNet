@@ -3,6 +3,9 @@ package com.ahghorab.xenonet.web.rest.vm;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
+
 import com.ahghorab.xenonet.domain.OveralDiagramConnection;
 import com.ahghorab.xenonet.domain.Server;
 
@@ -20,6 +23,9 @@ public class ServerVM {
 	private String cpu;
 	private String ram;
 	private String hhd;
+	private String cpuUsage;
+	private String ramUsage;
+	private String hhdUsage;
 	private String dockerVersion;
 	private String ovsVersion;
 	private String kvmVersion;
@@ -75,6 +81,9 @@ public class ServerVM {
 		this.cpu = server.getCpu();
 		this.ram = server.getRam();
 		this.hhd = server.getHhd();
+		this.cpuUsage = server.getCpuUsage();
+		this.ramUsage = server.getRamUsage();
+		this.hhdUsage = server.getHhdUsage();
 		this.dockerVersion = server.getDockerVersion();
 		this.ovsVersion = server.getOvsVersion();
 		this.kvmVersion = server.getKvmVersion();
@@ -83,9 +92,12 @@ public class ServerVM {
 
 	
 
+	
+
 	public ServerVM(Long id, String name, String os, String status, Set<NetworkCardVM> networkCards, Long userId,
-			String sshUsername, String sshPassword, String cpu, String ram, String hhd, String dockerVersion,
-			String ovsVersion, String kvmVersion, Set<OveralDiagramConnection> overalDiagramConnections) {
+			String sshUsername, String sshPassword, String cpu, String ram, String hhd, String cpuUsage,
+			String ramUsage, String hhdUsage, String dockerVersion, String ovsVersion, String kvmVersion,
+			Set<OveralDiagramConnection> overalDiagramConnections) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -98,6 +110,9 @@ public class ServerVM {
 		this.cpu = cpu;
 		this.ram = ram;
 		this.hhd = hhd;
+		this.cpuUsage = cpuUsage;
+		this.ramUsage = ramUsage;
+		this.hhdUsage = hhdUsage;
 		this.dockerVersion = dockerVersion;
 		this.ovsVersion = ovsVersion;
 		this.kvmVersion = kvmVersion;
@@ -216,5 +231,30 @@ public class ServerVM {
 		this.overalDiagramConnections = overalDiagramConnections;
 	}
 
+	public String getCpuUsage() {
+		return cpuUsage;
+	}
+
+	public void setCpuUsage(String cpuUsage) {
+		this.cpuUsage = cpuUsage;
+	}
+
+	public String getRamUsage() {
+		return ramUsage;
+	}
+
+	public void setRamUsage(String ramUsage) {
+		this.ramUsage = ramUsage;
+	}
+
+	public String getHhdUsage() {
+		return hhdUsage;
+	}
+
+	public void setHhdUsage(String hhdUsage) {
+		this.hhdUsage = hhdUsage;
+	}
+
+	
 
 }

@@ -90,6 +90,15 @@ public class Server extends AbstractAuditingEntity implements Serializable {
 	@Column(name = "hhd", length = 20)
 	private String hhd;
 	@Size(max = 20)
+	@Column(name = "cpuusage", length = 20)
+	private String cpuUsage;
+	@Size(max = 20)
+	@Column(name = "ramusage", length = 20)
+	private String ramUsage;
+	@Size(max = 20)
+	@Column(name = "hhdusage", length = 20)
+	private String hhdUsage;
+	@Size(max = 20)
 	@Column(name = "dockerversion", length = 20)
 	private String dockerVersion;
 	@Size(max = 20)
@@ -118,6 +127,9 @@ public class Server extends AbstractAuditingEntity implements Serializable {
 		this.cpu = serverVm.getCpu();
 		this.ram = serverVm.getRam();
 		this.hhd = serverVm.getHhd();
+		this.cpuUsage = serverVm.getCpuUsage();
+		this.ramUsage = serverVm.getRamUsage();
+		this.hhdUsage = serverVm.getHhdUsage();
 		this.dockerVersion = serverVm.getDockerVersion();
 		this.ovsVersion = serverVm.getOvsVersion();
 		this.kvmVersion = serverVm.getKvmVersion();
@@ -148,14 +160,11 @@ public class Server extends AbstractAuditingEntity implements Serializable {
 //		});
 	}
 
-	
-	
-	
 
 	public Server(Long id, String name, String os, String status, Set<NetworkCard> networkCards,
 			Set<SwitchDiagram> switchDiagrams, Set<OveralDiagramConnection> overalDiagramConnections, User user,
-			String sshUsername, String sshPassword, String cpu, String ram, String hhd, String dockerVersion,
-			String ovsVersion, String kvmVersion) {
+			String sshUsername, String sshPassword, String cpu, String ram, String hhd, String cpuUsage,
+			String ramUsage, String hhdUsage, String dockerVersion, String ovsVersion, String kvmVersion) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -170,9 +179,36 @@ public class Server extends AbstractAuditingEntity implements Serializable {
 		this.cpu = cpu;
 		this.ram = ram;
 		this.hhd = hhd;
+		this.cpuUsage = cpuUsage;
+		this.ramUsage = ramUsage;
+		this.hhdUsage = hhdUsage;
 		this.dockerVersion = dockerVersion;
 		this.ovsVersion = ovsVersion;
 		this.kvmVersion = kvmVersion;
+	}
+
+	public String getCpuUsage() {
+		return cpuUsage;
+	}
+
+	public void setCpuUsage(String cpuUsage) {
+		this.cpuUsage = cpuUsage;
+	}
+
+	public String getRamUsage() {
+		return ramUsage;
+	}
+
+	public void setRamUsage(String ramUsage) {
+		this.ramUsage = ramUsage;
+	}
+
+	public String getHhdUsage() {
+		return hhdUsage;
+	}
+
+	public void setHhdUsage(String hhdUsage) {
+		this.hhdUsage = hhdUsage;
 	}
 
 	public User getUser() {

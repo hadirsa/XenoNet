@@ -68,6 +68,9 @@ public class ServerService {
 		newServer.setCpu(tempServerVM.getCpu());
 		newServer.setRam(tempServerVM.getRam());
 		newServer.setHhd(tempServerVM.getHhd());
+		newServer.setCpuUsage(tempServerVM.getCpuUsage());
+		newServer.setRamUsage(tempServerVM.getRamUsage());
+		newServer.setHhdUsage(tempServerVM.getHhdUsage());
 		newServer.setDockerVersion(tempServerVM.getDockerVersion());
 		newServer.setOvsVersion(tempServerVM.getOvsVersion());
 		newServer.setKvmVersion(tempServerVM.getKvmVersion());
@@ -104,6 +107,9 @@ public class ServerService {
 		String command = "";
 
 		command += "top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1''}'" + ";"
+				+ "echo  $(( $(lscpu | awk '/^Socket/{ print $2 }') * $(lscpu | awk '/^Core/{ print $4 }') ))" + ";"
+				+ "df | grep '^/dev/[hs]d' | awk '{s+=$2} END {print s/1048576}'" + ";"
+				+ "expr $(awk '/MemTotal/ {print $2}' /proc/meminfo) / 1048576" + ";"
 				+ "free | grep Mem | awk '{print $3/$2 * 100.0}'" + ";" + "df -P / | awk '/%/ {print 100 -$5 ''}'" + ";"
 				+ "sudo ovs-vsctl --version |head -n 1| cut -d ' ' -f 4" + ";"
 				+ "sudo ovs-vsctl --version |head -n 1| cut -d ' ' -f 4" + ";"
@@ -111,6 +117,9 @@ public class ServerService {
 		mapArray.add("cpu");
 		mapArray.add("ram");
 		mapArray.add("hhd");
+		mapArray.add("cpuUsage");
+		mapArray.add("ramUsage");
+		mapArray.add("hhdUsage");
 		mapArray.add("dockerVersion");
 		mapArray.add("ovsVersion");
 		mapArray.add("kvmVersion");
@@ -144,6 +153,9 @@ public class ServerService {
 			tempServerVM.setCpu(result.get("cpu"));
 			tempServerVM.setRam(result.get("ram"));
 			tempServerVM.setHhd(result.get("hhd"));
+			tempServerVM.setCpuUsage(result.get("cpuUsage"));
+			tempServerVM.setRamUsage(result.get("ramUsage"));
+			tempServerVM.setHhdUsage(result.get("hhdUsage"));
 			tempServerVM.setDockerVersion(result.get("dockerVersion"));
 			tempServerVM.setOvsVersion(result.get("ovsVersion"));
 			tempServerVM.setKvmVersion(result.get("kvmVersion"));
