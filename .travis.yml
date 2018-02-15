@@ -13,6 +13,7 @@ before_install:
   - pwd
   - java -version
   - yarn -v
+  - docker -v
   - node -v
   - echo $TRAVIS_BUILD_DIR
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
