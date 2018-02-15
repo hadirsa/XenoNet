@@ -23,7 +23,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/Xnet?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password: rootroot
+        password:
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -69,7 +69,7 @@ liquibase:
 #        keyAlias: XenoNet
 # ===================================================================
 server:
-    port: 8081
+    port: 8080
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
