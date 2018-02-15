@@ -20,4 +20,8 @@ before_install:
 install:
   - cd "$TRAVIS_BUILD_DIR"/
   - yarn install
-  - mvn package -Pprod-travis -Pno-liquibase -DskipTests docker:build -DpushImage
+  - mvn package -Pprod-travis -Pno-liquibase -DskipTests
+after_success:
+  - cp $TRAVIS_BUILD_DIR/src/main/docker/Dockerfile $TRAVIS_BUILD_DIR/target
+  - docker build -t nephilimboy/xenonetapp .
+  - docker push nephilimboy/xenonetapp
