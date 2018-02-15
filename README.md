@@ -1,5 +1,5 @@
 # XenoNet
-
+[![Travis CI](https://travis-ci.org/nephilimboy/XenoNet.svg?branch=master)](https://travis-ci.org/spotify/docker-maven-plugin/) 
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
