@@ -11,7 +11,7 @@
 	</parent>
 
 	<groupId>com.ahghorab.xenonet</groupId>
-	<artifactId>xeno-net</artifactId>
+	<artifactId>xenonetapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Xeno Net</name>
@@ -371,6 +371,7 @@
 
 	</dependencies>
 	<build>
+		<finalName>xenonet</finalName>
 		<defaultGoal>spring-boot:run</defaultGoal>
 		<plugins>
 			<plugin>
@@ -559,8 +560,11 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>${docker-maven-plugin.version}</version>
 				<configuration>
-					<imageName>xenonet</imageName>
+					<imageName>nephilimboy/xenonetapp</imageName>
 					<dockerDirectory>src/main/docker</dockerDirectory>
+					<pushImage>true</pushImage>
+					<serverId>docker-hub</serverId>
+					<registryUrl>https://index.docker.io/v1/</registryUrl>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
@@ -767,6 +771,83 @@
 								</goals>
 								<configuration>
 									<arguments>install</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>webpack build prod</id>
+								<goals>
+									<goal>yarn</goal>
+								</goals>
+								<phase>generate-resources</phase>
+								<configuration>
+									<arguments>run webpack:prod</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<properties>
+				<!-- log configuration -->
+				<logback.loglevel>INFO</logback.loglevel>
+				<!-- default Spring profiles -->
+				<spring.profiles.active>prod${profile.swagger}${profile.no-liquibase}</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod-travis</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-undertow</artifactId>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>target/www/</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<warSourceDirectory>target/www/</warSourceDirectory>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<configuration>
+							<executable>true</executable>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>build-info</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.github.eirslett</groupId>
+						<artifactId>frontend-maven-plugin</artifactId>
+						<version>${frontend-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>install node and yarn</id>
+								<goals>
+									<goal>install-node-and-yarn</goal>
+								</goals>
+								<configuration>
+									<nodeVersion>${node.version}</nodeVersion>
+									<yarnVersion>${yarn.version}</yarnVersion>
 								</configuration>
 							</execution>
 							<execution>

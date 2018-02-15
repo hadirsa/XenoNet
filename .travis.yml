@@ -14,7 +14,8 @@ before_install:
   - java -version
   - yarn -v
   - echo $TRAVIS_BUILD_DIR
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
 install:
   - cd "$TRAVIS_BUILD_DIR"/
   - yarn install
-  - mvn package -Pprod -Pno-liquibase -DskipTests
+  - mvn package -Pprod-travis -Pno-liquibase -DskipTests docker:build -DpushImage
