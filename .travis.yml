@@ -7,8 +7,14 @@ node_js:
   - "8.9.4"
 jdk:
   - oraclejdk8
-
+env:
+  - MAVEN_CUSTOM_OPTS="-Pprod -DskipTests"
 before_install:
   - pwd
   - java -version
   - yarn -v
+  - echo $TRAVIS_BUILD_DIR
+install:
+  - cd "$TRAVIS_BUILD_DIR"/
+  - yarn install
+  - mvn package -Pprod -Pno-liquibase -DskipTests
