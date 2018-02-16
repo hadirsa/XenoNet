@@ -23,5 +23,8 @@ install:
   - mvn package -Pprod-travis -Pno-liquibase -DskipTests
 after_success:
   - cp $TRAVIS_BUILD_DIR/src/main/docker/Dockerfile $TRAVIS_BUILD_DIR/target/
+  - cd $TRAVIS_BUILD_DIR/target
+  - ls $TRAVIS_BUILD_DIR/target
+  - ls
   - docker build -f $TRAVIS_BUILD_DIR/target/Dockerfile -t nephilimboy/xenonetapp .
   - docker push nephilimboy/xenonetapp
