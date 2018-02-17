@@ -33,7 +33,8 @@ after_success:
   - cd $TRAVIS_BUILD_DIR/target
   - docker build -f $TRAVIS_BUILD_DIR/target/Dockerfile -t nephilimboy/xenonetapp .
   - docker push nephilimboy/xenonetapp
-  - cd $HOME
-  - curl -s ftp://ftp.jelastic.com/pub/cli/jelastic-cli-installer.sh | bash
-  - yes | $HOME/jelastic/users/authentication/signin --login $JELASTIC_LOGIN --password $JELASTIC_PASS --platformUrl app.jelastic.regruhosting.ru
-  - $HOME/jelastic/environment/control/redeploycontainerbyid --domain $JELASTIC_ENV --nodeId 147449 --tag latest
+  # skip deployment for now pricing conflict !!!
+#  - cd $HOME
+#  - curl -s ftp://ftp.jelastic.com/pub/cli/jelastic-cli-installer.sh | bash
+#  - yes | $HOME/jelastic/users/authentication/signin --login $JELASTIC_LOGIN --password $JELASTIC_PASS --platformUrl app.jelastic.regruhosting.ru
+#  - $HOME/jelastic/environment/control/redeploycontainerbyid --domain $JELASTIC_ENV --nodeId 147449 --tag latest
