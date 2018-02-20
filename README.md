@@ -1,7 +1,7 @@
 # XenoNet
 # Extreme Network Orchestration Web Application
 [![Travis CI](https://travis-ci.org/nephilimboy/XenoNet.svg?branch=master)](https://travis-ci.org/spotify/docker-maven-plugin/) 
-https://img.shields.io/badge/container-ready-green.svg
+![alt text](https://img.shields.io/badge/container-ready-green.svg)
 [![](https://images.microbadger.com/badges/image/nephilimboy/xenonetapp.svg)](https://microbadger.com/images/nephilimboy/xenonetapp "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/nephilimboy/xenonetapp.svg)](https://microbadger.com/images/nephilimboy/xenonetapp "Get your own version badge on microbadger.com")
 
