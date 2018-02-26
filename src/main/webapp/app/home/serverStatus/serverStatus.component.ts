@@ -34,7 +34,7 @@ import { Server } from "../../servers/server.model";
                <div class="well">
                 <ul class="list-inline">
                   <li style="text-align: center;">&nbsp;&nbsp;&nbsp;
-                    <div  saEasyPieChartContainer class="easy-pie-chart easyPieChart"  [dataPercent]="server.cpu"  data-pie-size="70">
+                    <div  saEasyPieChartContainer class="easy-pie-chart easyPieChart"  [dataPercent]="server.cpuUsage"  data-pie-size="70">
                       <span class="percent percent-sign " style="font-size: 20px !important;"></span>
                       <span style="font-size: 10px !important; color: black;display: block;font-weight: 700;position: absolute;top: 100%;width: 100%;text-align: center;">CPU</span>
                     </div>
@@ -42,7 +42,7 @@ import { Server } from "../../servers/server.model";
                   </li>
 
                   <li style="text-align: center;">&nbsp;&nbsp;&nbsp;
-                    <div saEasyPieChartContainer class="easy-pie-chart easyPieChart"  [dataPercent]="server.ram" data-pie-size="70">
+                    <div saEasyPieChartContainer class="easy-pie-chart easyPieChart"  [dataPercent]="server.ramUsage" data-pie-size="70">
                       <span class="percent percent-sign  " style="font-size: 20px !important;"></span>
                       <span style="font-size: 10px !important; color: black;display: block;font-weight: 700;position: absolute;top: 100%;width: 100%;text-align: center;">RAM</span>
                     </div>
@@ -50,7 +50,7 @@ import { Server } from "../../servers/server.model";
                   </li>
 
                   <li style="text-align: center;">&nbsp;&nbsp;&nbsp;
-                    <div saEasyPieChartContainer class="easy-pie-chart easyPieChart"  [dataPercent]="server.hhd" data-pie-size="70">
+                    <div saEasyPieChartContainer class="easy-pie-chart easyPieChart"  [dataPercent]="server.hhdUsage" data-pie-size="70">
                       <span class="percent percent-sign " style="font-size: 20px !important;">36</span>
                       <span style="font-size: 10px !important; color: black;display: block;font-weight: 700;position: absolute;top: 100%;width: 100%;text-align: center;">HDD</span>
                     </div>

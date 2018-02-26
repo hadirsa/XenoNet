@@ -15,6 +15,7 @@ const $$ = go.GraphObject.make;
 @Component({
     selector: "diagram-overView",
     template: `
+    <!-- <input type="button" value="clickme" (click)="save()"/> -->
     <div id="myDiagramDiv"  #myDiagramDiv style="border: solid 1px black; width:100%; height:600px"></div>
     `
 })

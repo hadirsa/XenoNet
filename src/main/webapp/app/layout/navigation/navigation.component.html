@@ -45,7 +45,7 @@
                 <ul *ngIf="menuItem.childs?.length > 0">
                     <li *ngFor="let subMenu of menuItem.childs">
                         <a [routerLink]="subMenu.url" title="subMenu.topic">
-                            <i [class]="menuItem.icon"></i>
+                            <i [class]="subMenu.icon"></i>
                             {{subMenu.topic}}</a>
                     </li>
                 </ul>

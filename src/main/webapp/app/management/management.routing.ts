@@ -21,14 +21,30 @@ import { UserCanActivate } from "../shared/canActivate/userCanActivate.service";
 
 const routes: Routes = [
     {
-        path: "",
-        component: ManagementComponent,
-        resolve: {
-            pagingParams: ResolvePagingParams
-        },
-        data: {},
-        // canActivate: [UserCanActivate]
-    }
+        path: 'users',
+        loadChildren: './user/user.module#UserModule',
+        data:{
+        }
+    },
+    {
+        path: 'health',
+        loadChildren: './health/health.module#HealthModule',
+        data:{
+        }
+    },
+    {
+        path: 'metrics',
+        loadChildren: './metrics/metrics.module#MetricsModule',
+        data:{
+        }
+    },
+    {
+        path: 'audits',
+        loadChildren: './audits/audits.module#AuditsModule',
+        data:{
+        }
+    },
+    
 ];
 
 export const ManagementRoute: ModuleWithProviders = RouterModule.forChild(

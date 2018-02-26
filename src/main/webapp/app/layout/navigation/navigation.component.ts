@@ -49,10 +49,11 @@ export class NavigationComponent implements OnInit {
         servers.isBookmark = false;
         servers.isOpen = false;
         servers.isShowing = false;
+
         let management = new NavigationMenuItem();
         management.id = 3;
         management.topic = "Management";
-        management.url = "/management";
+        management.url = null;
         management.icon = "fa fa-lg fa-fw fa-gears";
         management.isEnable = true;
         management.isBookmark = false;
@@ -113,10 +114,57 @@ export class NavigationComponent implements OnInit {
         hostMenu.isOpen = false;
         hostMenu.isShowing = false;
 
+
+        let users = new NavigationMenuItem();
+        users.id = 11;
+        users.topic = "Users";
+        users.url = "/management/users";
+        users.icon = "fa fa-lg fa-fw fa-user";
+        users.isEnable = true;
+        users.isBookmark = false;
+        users.isOpen = false;
+        users.isShowing = false;
+
+        let health = new NavigationMenuItem();
+        health.id = 12;
+        health.topic = "Health";
+        health.url = "/management/health";
+        health.icon = "fa fa-lg fa-fw fa-heart";
+        health.isEnable = true;
+        health.isBookmark = false;
+        health.isOpen = false;
+        health.isShowing = false;
+
+        let metrics = new NavigationMenuItem();
+        metrics.id = 13;
+        metrics.topic = "Metrics";
+        metrics.url = "/management/metrics";
+        metrics.icon = "fa fa-lg fa-fw fa-tachometer";
+        metrics.isEnable = true;
+        metrics.isBookmark = false;
+        metrics.isOpen = false;
+        metrics.isShowing = false;
+
+        let audits = new NavigationMenuItem();
+        audits.id = 14;
+        audits.topic = "Login History";
+        audits.url = "/management/audits";
+        audits.icon = "fa fa-lg fa-fw fa-sign-in";
+        audits.isEnable = true;
+        audits.isBookmark = false;
+        audits.isOpen = false;
+        audits.isShowing = false;
+
         networkEntities.childs.push(ovsMenu);
         networkEntities.childs.push(controllerMenu);
         networkEntities.childs.push(vnfMenu);
         networkEntities.childs.push(hostMenu);
+
+        management.childs.push(users);
+        management.childs.push(health);
+        management.childs.push(metrics);
+        management.childs.push(audits);
+
 
         this.menuItems.push(diagramDesigner);
         this.menuItems.push(networkEntities);

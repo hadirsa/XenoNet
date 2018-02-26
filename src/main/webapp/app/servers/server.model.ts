@@ -18,6 +18,9 @@ export class Server extends BaseEntity<number> {
         public cpu?: string,
         public ram?: string,
         public hhd?: string,
+        public cpuUsage?: string,
+        public ramUsage?: string,
+        public hhdUsage?: string,
         public dockerVersion?: string,
         public ovsVersion?: string,
         public kvmVersion?: string,
@@ -34,6 +37,9 @@ export class Server extends BaseEntity<number> {
         this.cpu = "";
         this.ram = "";
         this.hhd = "";
+        this.cpuUsage = "";
+        this.ramUsage = "";
+        this.hhdUsage = "";
         this.dockerVersion = "";
         this.ovsVersion = "";
         this.kvmVersion = "";

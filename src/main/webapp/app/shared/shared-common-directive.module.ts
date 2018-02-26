@@ -5,6 +5,7 @@ import { ToastModule } from "ng2-toastr/ng2-toastr";
 import { FormsModule } from "@angular/forms";
 import { TabsModule } from "ngx-bootstrap";
 import { RouterModule, RouteReuseStrategy } from "@angular/router";
+import {DatePipe} from '@angular/common';
 
 import { SmartadminWidgetsModule } from "./widgets/smartadmin-widgets.module";
 // import { ValidationDirectiveModule } from './validation/validation.module';
@@ -56,7 +57,7 @@ import { AsideModule } from "ng2-aside";
         D3Module,
         OnOffSwitchModule,
         InlineGraphsModule,
-        AsideModule
+        AsideModule,
     ],
     declarations: [
         BigBreadcrumbsComponent,
@@ -74,6 +75,7 @@ import { AsideModule } from "ng2-aside";
         KnobDirective
     ],
     providers: [
+        DatePipe,
         customHttpProvider()
         // {
         //     provide: RouteReuseStrategy,
@@ -81,6 +83,7 @@ import { AsideModule } from "ng2-aside";
         // }
     ],
     exports: [
+        DatePipe,
         // UtilsModule,
         SmartadminWidgetsModule,
         // ValidationDirectiveModule,
